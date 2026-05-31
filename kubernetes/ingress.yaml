@@ -5,10 +5,17 @@ metadata:
     app: homeassistant-docs
   name: homeassistant-docs
   namespace: homeassistant-docs
+  annotations:
+    cert-manager.io/cluster-issuer: "letsencrypt-issuer"
+    nginx.ingress.kubernetes.io/whitelist-source-range: "10.0.0.0/8,192.168.1.0/24,192.168.3.0/24,77.172.146.186"
 spec:
   ingressClassName: nginx
+  tls:
+  - hosts:
+    - docs.bartvanderhel.nl
+    secretName: homeassistant-docs-tls-secret
   rules:
-  - host: docs.homeassistant.local
+  - host: docs.bartvanderhel.nl
     http:
       paths:
       - backend:
