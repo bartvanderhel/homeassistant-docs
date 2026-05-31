@@ -23,7 +23,7 @@ spec:
       imagePullSecrets:
       - name: regcred
       containers:
-      - image: ghcr.io/bartvanderhel/homeassistant-docs:2026.05.31-3f0aaef
+      - image: ghcr.io/bartvanderhel/homeassistant-docs:2026.05.31-508e692
         imagePullPolicy: Always
         name: homeassistant-docs
         ports:
