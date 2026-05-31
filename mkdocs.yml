@@ -4,6 +4,7 @@ nav:
   - Configuration: configuration.md
   - Integrations: integrations.md
   - Devices: devices.md
+  - Complete Device Catalog: device-catalog.md
   - Automations: automations.md
   - Skills: skills.md
 theme:
