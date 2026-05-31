@@ -52,6 +52,44 @@ Your Home Assistant instance includes several automations that control lights, b
 - **Action**: Opens zonnescherm (sun shield/awning)
 - **Purpose**: Motorized outdoor shade control
 
+## Laundry Automations
+
+These automations are defined in `automations.yaml` and are currently active.
+
+### AEG Wasmachine Gestart
+
+- **ID**: `1711189485029`
+- **Trigger**: Power sensor rises above `500W` for `5s`
+- **Condition**: `input_boolean.aeg_washing_machine_running` is `off`
+- **Action**: Turns `input_boolean.aeg_washing_machine_running` to `on`
+
+### AEG Wasmachine Klaar
+
+- **ID**: `1710876866929`
+- **Trigger**: Power sensor falls below `1W` for `5m`
+- **Condition**: `input_boolean.aeg_washing_machine_running` is `on`
+- **Actions**:
+  1. Sends `notify.notify` message: "AEG wasmachine klaar!"
+  2. Announces on `media_player.nestmini7580` using `tts.google_translate_say`
+  3. Turns `input_boolean.aeg_washing_machine_running` back `off`
+
+### Samsung Wasmachine Gestart
+
+- **ID**: `1711190196340`
+- **Trigger**: Power sensor rises above `500W` for `5s`
+- **Condition**: `input_boolean.samsung_washing_machine_running` is `off`
+- **Action**: Turns `input_boolean.samsung_washing_machine_running` to `on`
+
+### Samsung Wasmachine Klaar
+
+- **ID**: `1710876901402`
+- **Trigger**: Power sensor falls below `1W` for `5m`
+- **Condition**: `input_boolean.samsung_washing_machine_running` is `on`
+- **Actions**:
+  1. Sends `notify.notify` message: "Samsung wasmachine klaar!"
+  2. Announces on `media_player.nestmini7580` using `tts.google_translate_say`
+  3. Turns `input_boolean.samsung_washing_machine_running` back `off`
+
 ## Automation Framework
 
 ### Trigger Types Used

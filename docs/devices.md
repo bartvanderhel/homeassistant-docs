@@ -55,6 +55,22 @@ Your setup includes multiple smart lights controlled via scripts and automations
   - States: Disabled, None, Detected, Not Determined
   - Scan interval: 3 seconds
 
+### Appliances (Wasmachines)
+
+Your laundry setup has two monitored washing machines with power-based start/finish detection:
+
+- **AEG Wasmachine**
+  - Start detection: power above `500W` for `5s`
+  - Finish detection: power below `1W` for `5m`
+  - Running state helper: `input_boolean.aeg_washing_machine_running`
+  - Notification + TTS when cycle is complete
+
+- **Samsung Wasmachine**
+  - Start detection: power above `500W` for `5s`
+  - Finish detection: power below `1W` for `5m`
+  - Running state helper: `input_boolean.samsung_washing_machine_running`
+  - Notification + TTS when cycle is complete
+
 ### Plant Monitoring Sensors
 
 #### Croton
