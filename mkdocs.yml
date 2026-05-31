@@ -1,0 +1,10 @@
+site_name: Home Assistant Docs
+nav:
+  - Home: index.md
+  - Configuration: configuration.md
+  - Skills: skills.md
+theme:
+  name: material
+
+extra:
+  repository: ../
