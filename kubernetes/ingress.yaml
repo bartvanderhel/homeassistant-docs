@@ -1,0 +1,20 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  labels:
+    app: homeassistant-docs
+  name: homeassistant-docs
+  namespace: homeassistant-docs
+spec:
+  ingressClassName: nginx
+  rules:
+  - host: docs.homeassistant.local
+    http:
+      paths:
+      - backend:
+          service:
+            name: homeassistant-docs
+            port:
+              number: 8000
+        path: /
+        pathType: Prefix

@@ -1,0 +1,64 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: homeassistant-docs
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: homeassistant-docs
+  name: homeassistant-docs
+  namespace: homeassistant-docs
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: homeassistant-docs
+  template:
+    metadata:
+      labels:
+        app: homeassistant-docs
+    spec:
+      imagePullSecrets:
+      - name: regcred
+      containers:
+      - image: ghcr.io/bartvanderhel/homeassistant-docs:latest
+        imagePullPolicy: Always
+        name: homeassistant-docs
+        ports:
+        - containerPort: 8000
+          name: http
+        securityContext:
+          allowPrivilegeEscalation: false
+          capabilities:
+            drop:
+              - ALL
+          seccompProfile:
+            type: RuntimeDefault
+        resources:
+          requests:
+            cpu: 100m
+            memory: 128Mi
+          limits:
+            cpu: 500m
+            memory: 512Mi
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 1001
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: homeassistant-docs
+  name: homeassistant-docs
+  namespace: homeassistant-docs
+spec:
+  ports:
+  - name: http
+    port: 8000
+    targetPort: 8000
+  selector:
+    app: homeassistant-docs
+  type: ClusterIP
